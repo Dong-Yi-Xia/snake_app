@@ -27,12 +27,12 @@ const initalState = {
 
 
 
+
 class App extends Component {
 
   state = {
     ...initalState
   }
-
 
   componentDidMount(){
     setInterval(this.movement, this.state.speed)
@@ -44,36 +44,52 @@ class App extends Component {
     this.checkIfOutOfBound()
     this.checkIfCollapsed() 
     this.checkIfEat()
-
- 
-
   }
 
+  componentWillUnmount(){
+    clearInterval(setInterval(this.movement, this.state.speed))
+  }
+
+
+  startGame(){
+    let start = setInterval(this.movement, this.state.speed)
+    if(this.state.pause){
+      clearInterval(start)
+    }
+}
 
 
   onkeydown = (e) => {
     console.log("hell", e)
     e = e || window.event
 
-    // if (e.keyCode === 32){
-    //       this.setState({
-    //         pause: !this.state.pause
-    //       })
-    // } 
+    if (e.keyCode === 32){
+        this.setState({
+          pause: !this.state.pause
+        })
+    } 
     
     switch (e.keyCode){
       case 37:
+        if(this.state.direction === "RIGHT") break
         this.setState({direction: 'LEFT'})
         break
+        
       case 38:
+        if(this.state.direction === "DOWN") break
         this.setState({direction: 'UP'})
         break
+        
       case 39:
+        if(this.state.direction === "LEFT") break
         this.setState({direction: 'RIGHT'})
         break
+        
       case 40:
+        if(this.state.direction === "UP") break
         this.setState({direction: 'DOWN'})
         break
+        
       default:
         break  
     }
@@ -155,6 +171,7 @@ class App extends Component {
 
   render(){
     console.log("hi", this.state.pause)
+    console.log("hi", this.state.direction)
     return (
       <div className="game-area">
        <Snake snakeDots={this.state.snakeDots}></Snake>
