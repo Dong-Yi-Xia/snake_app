@@ -207,6 +207,7 @@ class App extends Component {
       ...initalState,
       foodDot: getRandomCoordinates()
     })
+    clearInterval(this.interveal) 
   }
 
 
@@ -236,19 +237,30 @@ class App extends Component {
 
     return (
       <div>
-        <div className="game-area">
-          <Snake snakeDots={this.state.snakeDots}></Snake>
-          <Food foodDot={this.state.foodDot} />
+        
+        <div className="container">
+          <div className="left-container">
+            <div className="game-area">
+              <Snake snakeDots={this.state.snakeDots}></Snake>
+              <Food foodDot={this.state.foodDot} />
+            </div>
+
+            <div className="options">
+              <button onClick={this.handlePause}>pause</button>
+            </div>
+          </div>
+
+          <div className="score">
+            <h1>Score</h1>
+            <h2>{this.state.snakeDots.length-2}</h2>
+          </div>
         </div>
 
-        <div className="options">
-          <button onClick={this.handlePause}>pause</button>
-        </div>
+
         
         <div className="paused-area" style={this.state.pause ? {display:'flex'} : {display:'none'}}>
             <div className="paused">
               <h1>Paused</h1>
-              <h2>Scored: {this.state.snakeDots.length-2}</h2>
               <button onClick={this.handlePlay}>Play</button>
             </div>
         </div>
