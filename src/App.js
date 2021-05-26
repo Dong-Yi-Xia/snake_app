@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import './index.css';
 import Snake from './snake'
 import Food from './Food'
-
+import sound from './asset/pop.wav'
+import bomb from './asset/bomb.wav'
 
 
 //get mulitple of 2 from 2 to 98, each sqaure are 2% width and hight
@@ -36,6 +37,7 @@ class App extends Component {
   state = {
     ...initalState
   }
+
 
 
   componentDidMount(){
@@ -164,6 +166,7 @@ class App extends Component {
     let head = this.state.snakeDots[this.state.snakeDots.length -1]
     let food = this.state.foodDot
     if(head[0] === food[0] && head[1] === food[1]){
+      new Audio(sound).play()
       this.setState({
         foodDot: getRandomCoordinates()
       })
@@ -202,8 +205,8 @@ class App extends Component {
 
 
   onGameOver=()=>{
-    alert(`Game is over. Scored ${this.state.snakeDots.length-3}`)
-
+    new Audio(bomb).play()
+    setTimeout(()=>alert(`Game is over. Scored ${this.state.snakeDots.length-3}`), 200)
     this.high = localStorage.getItem('highScore')
     if(!this.high || this.state.snakeDots.length-3 > this.high){
       localStorage.setItem('highScore', this.state.snakeDots.length-3)
