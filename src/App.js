@@ -5,7 +5,7 @@ import Food from './Food'
 
 
 
-//get mulitple of 2 from 2 to 98
+//get mulitple of 2 from 2 to 98, each sqaure are 2% width and hight
 const getRandomCoordinates = () => {
   let min = 1
   let max = 98
@@ -18,13 +18,13 @@ const getRandomCoordinates = () => {
 const initalState = {
     foodDot: getRandomCoordinates(),
     speed: 200,
-    direction: 'RIGHT',
+    direction: 'UP',
     pause: true,
     snakeDots: [
     //[x,y]
-      [0,0],
-      [2,0],
-      [4,0]
+      [48,64],
+      [48,62],
+      [48,60]
     ]
 }
 
@@ -56,7 +56,6 @@ class App extends Component {
 
 
   onkeydown = (e) => {
-    console.log("hell", e)
     e = e || window.event
 
     switch (e.keyCode){
@@ -206,11 +205,9 @@ class App extends Component {
     alert(`Game is over. Scored ${this.state.snakeDots.length-3}`)
 
     this.high = localStorage.getItem('highScore')
-
     if(!this.high || this.state.snakeDots.length-3 > this.high){
       localStorage.setItem('highScore', this.state.snakeDots.length-3)
     }
-
 
     this.setState({
       ...initalState,
@@ -239,13 +236,10 @@ class App extends Component {
   }
 
 
-
-
   render(){
     console.log("hi", this.state.pause, this.state.speed)
     let high = localStorage.getItem('highScore')
   
-
     return (
       <div>
         
@@ -261,15 +255,13 @@ class App extends Component {
             </div>
           </div>
 
-          <div className="score">
+          <div className="score right-container">
             <h1>HighScore: {high}</h1>
             <h1>Score</h1>
             <h2>{this.state.snakeDots.length-3}</h2>
           </div>
         </div>
 
-
-        
         <div className="paused-area" style={this.state.pause ? {display:'flex'} : {display:'none'}}>
             <div className="paused">
               <h1>Paused</h1>

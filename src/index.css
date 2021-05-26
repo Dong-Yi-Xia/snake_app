@@ -11,7 +11,8 @@
   margin: 50px 50px 0px;
   width: 600px;
   height: 600px;
-  border: 2px solid;
+  border: 10px solid ;
+  border-image: url(./asset/border2.png) 30% round
 }
 
 
