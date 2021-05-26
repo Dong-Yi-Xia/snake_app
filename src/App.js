@@ -34,11 +34,12 @@ class App extends Component {
     ...initalState
   }
 
+
   componentDidMount(){
-    setInterval(this.movement, this.state.speed)
     document.onkeydown = this.onkeydown
   }
 
+ 
 
   componentDidUpdate(){
     this.checkIfOutOfBound()
@@ -46,29 +47,16 @@ class App extends Component {
     this.checkIfEat()
   }
 
-  componentWillUnmount(){
-    clearInterval(setInterval(this.movement, this.state.speed))
-  }
 
-
-  startGame(){
-    let start = setInterval(this.movement, this.state.speed)
-    if(this.state.pause){
-      clearInterval(start)
-    }
-}
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return this.state.pause !== nextState.pause
+  // }
 
 
   onkeydown = (e) => {
     console.log("hell", e)
     e = e || window.event
 
-    if (e.keyCode === 32){
-        this.setState({
-          pause: !this.state.pause
-        })
-    } 
-    
     switch (e.keyCode){
       case 37:
         if(this.state.direction === "RIGHT") break
@@ -131,7 +119,7 @@ class App extends Component {
     }
   }
 
-  checkIfCollapsed(){
+  checkIfCollapsed=()=>{
     let snake = [...this.state.snakeDots]
     let head = snake.pop()
     snake.forEach(dot => {
@@ -141,7 +129,7 @@ class App extends Component {
     })
   }
 
-  checkIfEat(){
+  checkIfEat=()=>{
     let head = this.state.snakeDots[this.state.snakeDots.length -1]
     let food = this.state.foodDot
     if(head[0] === food[0] && head[1] === food[1]){
@@ -152,15 +140,15 @@ class App extends Component {
     }
   }
 
-  enlargeSnake(){
+
+  enlargeSnake=()=>{
     let newSnake = [...this.state.snakeDots]
     newSnake.unshift([])
     this.setState({snakeDots: newSnake})
   }
 
 
-
-  onGameOver(){
+  onGameOver=()=>{
     alert(`Game is over. Scored ${this.state.snakeDots.length-2}`)
     this.setState({
       ...initalState,
@@ -169,15 +157,45 @@ class App extends Component {
   }
 
 
+  handlePause=(e)=>{
+    clearInterval(this.interveal) 
+    this.setState(prevState => ({
+      pause: !prevState.pause
+    }))
+  }
+
+  handlePlay=()=>{
+    this.interveal = setInterval(this.movement, this.state.speed)
+    this.setState(prevState => ({
+      pause: !prevState.pause
+    }))
+  }
+
+
+
+
   render(){
     console.log("hi", this.state.pause)
-    console.log("hi", this.state.direction)
+
     return (
-      <div className="game-area">
-       <Snake snakeDots={this.state.snakeDots}></Snake>
-       <Food foodDot={this.state.foodDot} />
-    
-  
+      <div>
+        <div className="game-area">
+          <Snake snakeDots={this.state.snakeDots}></Snake>
+          <Food foodDot={this.state.foodDot} />
+        </div>
+
+        <div className="options">
+          <button onClick={this.handlePause}>pause</button>
+        </div>
+        
+        <div className="paused-area" style={this.state.pause ? {display:'flex'} : {display:'none'}}>
+            <div className="paused">
+              <h1>Paused</h1>
+              <h2>Scored: {this.state.snakeDots.length-2}</h2>
+              <button onClick={this.handlePlay}>Play</button>
+            </div>
+        </div>
+       
       </div>
     );
   }
