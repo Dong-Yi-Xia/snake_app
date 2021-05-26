@@ -23,6 +23,11 @@
   border: 1px solid white;
 }
 
+.snake-dot:last-child {
+  background-color: rgb(21, 255, 0);
+  border-radius: 50%;
+}
+
 
 .food-dot{
   position: absolute;

@@ -23,7 +23,8 @@ const initalState = {
     snakeDots: [
     //[x,y]
       [0,0],
-      [2,0]
+      [2,0],
+      [4,0]
     ]
 }
 
@@ -202,7 +203,15 @@ class App extends Component {
 
 
   onGameOver=()=>{
-    alert(`Game is over. Scored ${this.state.snakeDots.length-2}`)
+    alert(`Game is over. Scored ${this.state.snakeDots.length-3}`)
+
+    this.high = localStorage.getItem('highScore')
+
+    if(!this.high || this.state.snakeDots.length-3 > this.high){
+      localStorage.setItem('highScore', this.state.snakeDots.length-3)
+    }
+
+
     this.setState({
       ...initalState,
       foodDot: getRandomCoordinates()
@@ -234,6 +243,8 @@ class App extends Component {
 
   render(){
     console.log("hi", this.state.pause, this.state.speed)
+    let high = localStorage.getItem('highScore')
+  
 
     return (
       <div>
@@ -251,8 +262,9 @@ class App extends Component {
           </div>
 
           <div className="score">
+            <h1>HighScore: {high}</h1>
             <h1>Score</h1>
-            <h2>{this.state.snakeDots.length-2}</h2>
+            <h2>{this.state.snakeDots.length-3}</h2>
           </div>
         </div>
 
