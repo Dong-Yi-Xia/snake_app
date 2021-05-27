@@ -4,6 +4,7 @@
 
 .container{
   display: flex;
+  background-color: rgb(219, 115, 30);
 }
 
 .game-area {
@@ -13,6 +14,7 @@
   height: 600px;
   border: 10px solid ;
   border-image: url(./asset/border2.png) 30% round;
+  background-color: whitesmoke;
 }
 
 
@@ -75,4 +77,14 @@
   width: 100%;
   text-align: center;
   padding: 30px;
+}
+
+button{
+  transform: scale(1.4);
+}
+
+button:hover{
+  transform: scale(1.2);
+  transition-timing-function: linear;
+  filter: brightness(1.3);
 }

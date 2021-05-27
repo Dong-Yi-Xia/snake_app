@@ -275,7 +275,7 @@ class App extends Component {
             </div>
 
             <div className="options">
-              <button onClick={this.handlePause}>pause</button>
+              <button onClick={this.handlePause}>PAUSE</button>
             </div>
           </div>
 
@@ -288,8 +288,8 @@ class App extends Component {
 
         <div className="paused-area" style={this.state.pause ? {display:'flex'} : {display:'none'}}>
             <div className="paused">
-              <h1>Paused</h1>
-              <button onClick={this.handlePlay}>Play</button>
+              <h1>PAUSED</h1>
+              <button onClick={this.handlePlay}>PLAY</button>
             </div>
         </div>
        
