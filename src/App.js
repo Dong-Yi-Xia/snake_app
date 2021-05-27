@@ -4,6 +4,7 @@ import Snake from './snake'
 import Food from './Food'
 import sound from './asset/pop.wav'
 import bomb from './asset/bomb.wav'
+import zoom from './asset/zoom2.wav'
 
 
 //get mulitple of 2 from 2 to 98, each sqaure are 2% width and hight
@@ -21,6 +22,7 @@ const initalState = {
     speed: 200,
     direction: 'UP',
     pause: true,
+    currentScore: 0,
     snakeDots: [
     //[x,y]
       [48,64],
@@ -49,6 +51,7 @@ class App extends Component {
     this.checkIfOutOfBound()
     this.checkIfCollapsed() 
     this.checkIfEat()
+    this.zoomSound()
   }
 
 
@@ -196,6 +199,12 @@ class App extends Component {
   }
 
 
+  zoomSound=()=>{
+    if(this.state.speed === 40){
+      new Audio(zoom).play()
+    }
+  }
+
   updateGame=()=>{
     if(!this.state.pause){
       clearInterval(this.interveal) 
@@ -206,15 +215,25 @@ class App extends Component {
 
   onGameOver=()=>{
     new Audio(bomb).play()
-    setTimeout(()=>alert(`Game is over. Scored ${this.state.snakeDots.length-3}`), 200)
+    // alert(`Game is over. Scored ${this.state.snakeDots.length-3}`)
+    setTimeout(()=>{ 
+      alert(`Game is over. Scored ${this.state.currentScore}`)
+    }, 200)
+
     this.high = localStorage.getItem('highScore')
     if(!this.high || this.state.snakeDots.length-3 > this.high){
       localStorage.setItem('highScore', this.state.snakeDots.length-3)
     }
 
+    this.newGame()
+  }
+
+
+  newGame=()=>{
     this.setState({
       ...initalState,
-      foodDot: getRandomCoordinates()
+      foodDot: getRandomCoordinates(),
+      currentScore: this.state.snakeDots.length-3
     })
     clearInterval(this.interveal) 
   }
@@ -234,13 +253,14 @@ class App extends Component {
   handlePlay=()=>{
     this.interveal = setInterval(this.movement, this.state.speed)
     this.setState(prevState => ({
-      pause: !prevState.pause
+      pause: !prevState.pause,
+      gameOver: false
     }))
   }
 
 
   render(){
-    console.log("hi", this.state.pause, this.state.speed)
+    console.log("GameOver", this.state.speed)
     let high = localStorage.getItem('highScore')
   
     return (
