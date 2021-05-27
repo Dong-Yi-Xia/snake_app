@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/snake_app/static/css/main.2d19303b.chunk.css",
+    "main.js": "/snake_app/static/js/main.b139b89d.chunk.js",
+    "main.js.map": "/snake_app/static/js/main.b139b89d.chunk.js.map",
+    "runtime-main.js": "/snake_app/static/js/runtime-main.d6b16f8c.js",
+    "runtime-main.js.map": "/snake_app/static/js/runtime-main.d6b16f8c.js.map",
+    "static/js/2.e02f7105.chunk.js": "/snake_app/static/js/2.e02f7105.chunk.js",
+    "static/js/2.e02f7105.chunk.js.map": "/snake_app/static/js/2.e02f7105.chunk.js.map",
+    "index.html": "/snake_app/index.html",
+    "static/css/main.2d19303b.chunk.css.map": "/snake_app/static/css/main.2d19303b.chunk.css.map",
+    "static/js/2.e02f7105.chunk.js.LICENSE.txt": "/snake_app/static/js/2.e02f7105.chunk.js.LICENSE.txt",
+    "static/media/bomb.302628fd.wav": "/snake_app/static/media/bomb.302628fd.wav",
+    "static/media/cookie.a2a843ad.png": "/snake_app/static/media/cookie.a2a843ad.png",
+    "static/media/index.css": "/snake_app/static/media/heart.53124bf6.png",
+    "static/media/pop.8753888f.wav": "/snake_app/static/media/pop.8753888f.wav",
+    "static/media/sushi.13a9da31.png": "/snake_app/static/media/sushi.13a9da31.png",
+    "static/media/taco.0a111c3f.jpeg": "/snake_app/static/media/taco.0a111c3f.jpeg",
+    "static/media/zoom2.a08f98f7.wav": "/snake_app/static/media/zoom2.a08f98f7.wav"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d6b16f8c.js",
+    "static/js/2.e02f7105.chunk.js",
+    "static/css/main.2d19303b.chunk.css",
+    "static/js/main.b139b89d.chunk.js"
+  ]
+}
