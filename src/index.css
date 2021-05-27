@@ -5,6 +5,7 @@
 .container{
   display: flex;
   background-color: rgb(219, 115, 30);
+  justify-content: center;
 }
 
 .game-area {
@@ -50,7 +51,6 @@
 }
 
 .score{
-  flex: 1;
   margin-top: 50px
 }
 
