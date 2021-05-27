@@ -7,6 +7,7 @@ https://www.w3schools.com/jsref/met_win_setinterval.asp
 https://www.w3schools.com/jsref/met_win_clearinterval.asp
 
 HTMLAudioElement<br>
+https://www.w3schools.com/tags/ref_av_dom.asp
 https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement
 https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement/Audio
 
