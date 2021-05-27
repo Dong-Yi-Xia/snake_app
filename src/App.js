@@ -7,12 +7,15 @@ import bomb from './asset/bomb.wav'
 import zoom from './asset/zoom2.wav'
 
 
-//get mulitple of 2 from 2 to 98, each sqaure are 2% width and hight
+//size of the snakedot
+let step = 4
+
+//get mulitple of 4, from 0 to 98, each sqaure are 4% width and hight
 const getRandomCoordinates = () => {
   let min = 1
   let max = 98
-  let x = Math.floor( (Math.random()*(max-min+1)+ min) /2 ) * 2
-  let y= Math.floor( (Math.random()*(max-min+1)+ min) /2 ) * 2
+  let x = Math.floor( (Math.random()*(max-min+1)+ min) /step ) * step
+  let y= Math.floor( (Math.random()*(max-min+1)+ min) /step ) * step
   return [x,y]
 }
 
@@ -25,8 +28,8 @@ const initalState = {
     currentScore: 0,
     snakeDots: [
     //[x,y]
+      [48,68],
       [48,64],
-      [48,62],
       [48,60]
     ]
 }
@@ -40,12 +43,9 @@ class App extends Component {
     ...initalState
   }
 
-
-
   componentDidMount(){
     document.onkeydown = this.onkeydown
   }
-
  
   componentDidUpdate(){
     this.checkIfOutOfBound()
@@ -58,6 +58,7 @@ class App extends Component {
   // shouldComponentUpdate(nextProps, nextState) {
   //   return this.state.speed !== nextState.speed
   // }
+  
 
 
   onkeydown = (e) => {
@@ -120,16 +121,16 @@ class App extends Component {
     //head[X,Y] position
     switch (this.state.direction){
       case 'RIGHT':
-        head = [head[0]+2, head[1]]
+        head = [head[0]+step, head[1]]
         break
       case 'LEFT':
-        head = [head[0]-2, head[1]]
+        head = [head[0]-step, head[1]]
         break
       case 'UP':
-        head = [head[0], head[1]-2]
+        head = [head[0], head[1]-step]
         break
       case 'DOWN':
-        head = [head[0], head[1]+2]
+        head = [head[0], head[1]+step]
         break
       default:
         break

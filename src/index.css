@@ -18,8 +18,8 @@
 
 .snake-dot {
   position: absolute;
-  width: 2%;
-  height: 2%;
+  width: 4%;
+  height: 4%;
   background-color: black;
   border: 1px solid white;
 }
@@ -27,13 +27,18 @@
 .snake-dot:last-child {
   background-color: rgb(21, 255, 0);
   border-radius: 50%;
+  background-image: url(./asset/heart.png);
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover;
+  border: 1px solid white;
 }
 
 
 .food-dot{
   position: absolute;
-  width: 2%;
-  height: 2%;
+  width: 4%;
+  height: 4%;
   /* background-color: red; */
   /* background-image: url(./asset/heart.png); */
   background-position: center; 
