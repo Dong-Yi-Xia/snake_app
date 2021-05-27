@@ -13,7 +13,7 @@ let myfood = foodSelection[0]
 
 export default function Food({foodDot}) {
 
-    const [currentFood, setCurrentFood] = useState(foodDot)
+    const [currentFood, setCurrentFood] = useState([])
 
     const randomFood = () => {
         return Math.floor( Math.random()* foodSelection.length )
