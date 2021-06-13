@@ -23,11 +23,13 @@ https://mixkit.co/free-sound-effects
 React Class
 setState works in an asynchronous way. That means after calling setState the this.state variable is not immediately changed. Use setState callback.  setState(updater, callback)
 
-this.setState({ <br>
-    name:'value'  <br>
-},() => { <br>
-    console.log(this.state.name); <br>
-}); <br>
+```javascript
+this.setState({ 
+    name:'value'  
+},() => { 
+    console.log(this.state.name); 
+}); 
+```
 
 ### Deploy on GitHub Page with React
 npm install gh-pages / npm add gh-pages<br>
